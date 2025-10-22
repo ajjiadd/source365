@@ -295,6 +295,16 @@ section.card_layout {
 }
 
 /* Tanvir FINISHed */
+/* swadhin css */
+/* ===== Security and privacy ===== */
+
+.security-cart {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+
 
 
 
