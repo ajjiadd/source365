@@ -305,6 +305,70 @@ section.card_layout {
   margin-top: 14px;
 }
 
+/* govt deparment */
+
+.Department {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding-top: 12px;
+}
+
+
+#Department {
+  padding: 40px 0;
+  background: #f8fafb;
+  border-top: 1px solid #e0e6ec;
+}
+
+.department-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.department-container h3 {
+  color: #005f37; 
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.department-container p {
+  font-size: 14px;
+  color: #444;
+  margin-top: 6px;
+}
+
+.department-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.department-item {
+  background: #ffffff;
+  border: 1px solid #e1e6eb;
+  border-radius: 8px;
+  padding: 10px 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.department-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.department-item img {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+}
+
 
 
 
