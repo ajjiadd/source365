@@ -237,5 +237,64 @@ nav.main-nav a {
   100% { transform: translateX(0); }
 }
 
+/* Tanvir start CSS */
+
+/* ===== Sections ===== */
+section.card_layout {
+  padding: 28px 0;
+  background: var(--card);
+  border-top: 1px solid #e6eef6;
+}
+.smll_cd {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.cantBOX {
+  background: var(--card);
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(2, 6, 23, 0.03);
+  border: 1px solid #eef2f7;
+}
+
+
+.process {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.step {
+  background: var(--card);
+  padding: 18px;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid #eef2f7;
+  box-shadow: 0 2px 8px rgba(2, 6, 23, 0.03);
+}
+.step .num {
+  font-size: 28px;
+  color: var(--gov-green);
+  font-weight: 700;
+}
+
+.service_G {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+.ser-cd {
+  background: #f8fafb;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #eef2f7;
+}
+
+/* Tanvir FINISHed */
+
 
 
