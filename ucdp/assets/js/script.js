@@ -23,8 +23,8 @@ function startOTPTimer(buttonId) {
     button.textContent = Resend OTP (${timeLeft}s);
     const timer = setInterval(() => {
         timeLeft--;
-        button.textContent = Resend OTP (${timeLeft}s);
-        if (timeLeft <= 0) {
+        button.textContent =Resend OTP (${timeLeft}s);
+        if (timeLeft <= 0) { 
             clearInterval(timer);
             button.disabled = false;
             button.textContent = 'Resend OTP';
