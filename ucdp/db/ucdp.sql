@@ -112,6 +112,9 @@ CREATE INDEX idx_shares_token ON shares(share_token);
 CREATE INDEX idx_logs_action ON audit_logs(action);
 CREATE INDEX idx_feedback_status ON feedback(status);
 
+
+
+
 -- Sample Data Inserts (Fake data for testing)
 
 -- Insert sample users
@@ -152,3 +155,20 @@ INSERT INTO mock_govt_data (nid, doc_type, fake_data, source) VALUES
 ('12345678901234567', 'NID', '{"name": "MD. Abdullah Al Jiad", "dob": "1990-01-01", "address": "Dhaka"}', 'EC'),
 ('12345678901234567', 'Passport', '{"number": "AB1234567", "issue_date": "2020-01-01", "expiry": "2030-12-31"}', 'PO');
 
+-- Step 1: Add new doc_type to ENUM (Police_Clearance, Car_Registration - Vehicle_Registration already there)
+ALTER TABLE documents MODIFY COLUMN doc_type ENUM('NID', 'Passport', 'Driving_License', 'Birth_Certificate', 'Education_Certificate', 'Vehicle_Registration', 'Police_Clearance') NOT NULL;
+
+-- Step 2: Extend mock_govt_data ENUM for new types
+ALTER TABLE mock_govt_data MODIFY COLUMN doc_type ENUM('NID', 'Passport', 'Driving_License', 'Birth_Certificate', 'Education_Certificate', 'Vehicle_Registration', 'Police_Clearance') NOT NULL;
+
+-- Step 3: Add sample mock data for new types (for NID=12345678901234567)
+INSERT INTO mock_govt_data (nid, doc_type, fake_data, source) VALUES
+('12345678901234567', 'Birth_Certificate', '{"number": "BC123456", "dob": "1990-01-01", "place": "Dhaka"}', 'Registrar'),
+('12345678901234567', 'Education_Certificate', '{"degree": "BSc CSE", "board": "Dhaka", "year": "2015"}', 'Education Board'),
+('12345678901234567', 'Police_Clearance', '{"certificate_id": "PC789012", "issue_date": "2025-01-01", "valid_till": "2026-01-01"}', 'Police'),
+('12345678901234567', 'Vehicle_Registration', '{"reg_no": "DHAKA-METRO-GA-123456", "type": "Car", "issue_date": "2020-01-01"}', 'BRTA');  -- Car/Bike example
+
+-- Step 4: Verify sample users have docs (run if needed)
+INSERT INTO documents (user_id, doc_type, file_path, status) VALUES
+(1, 'Birth_Certificate', 'uploads/birth_cert_sample.pdf', 'verified'),  -- Auto-linked simulation
+(1, 'Education_Certificate', 'uploads/edu_cert_sample.pdf', 'verified');

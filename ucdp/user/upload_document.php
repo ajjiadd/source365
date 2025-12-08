@@ -13,10 +13,10 @@ $success = '';
 $error = '';
 
 
-$upload_dir = __DIR__ . '/../../uploads/';  
+$upload_dir = __DIR__ . '/../../uploads/';
 if (!is_dir($upload_dir)) {
-    mkdir($upload_dir, 0777, true);  
-    $error = "Uploads folder created. Try again."; 
+    mkdir($upload_dir, 0777, true);
+    $error = "Uploads folder created. Try again.";
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -42,11 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $file_name = $user_id . '_' . time() . '.' . $file_ext;
                 $target_path = $upload_dir . $file_name;  // Absolute target path
-                
-                
-                
+
+
+
                 if (move_uploaded_file($file['tmp_name'], $target_path)) {
-                    
+
                     $relative_path = 'uploads/' . $file_name;
                     $sql = "INSERT INTO documents (user_id, doc_type, file_path, doc_number, expiry_date) VALUES (?, ?, ?, ?, ?)";
                     $stmt = $conn->prepare($sql);
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $success = "Document uploaded successfully! File saved at: $target_path. Awaiting admin verification. <br><a href='../$relative_path' target='_blank'>View Uploaded File</a>";
                     } else {
                         $error = "DB insert failed: " . $conn->error;
-                        unlink($target_path);  
+                        unlink($target_path);
                     }
                     $stmt->close();
                 } else {
@@ -99,7 +99,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <option value="Driving_License">Driving License</option>
             <option value="Birth_Certificate">Birth Certificate</option>
             <option value="Education_Certificate">Education Certificate</option>
-            <option value="Vehicle_Registration">Vehicle Registration</option>
+            <option value="Vehicle_Registration">Vehicle Registration (Car/Bike)</option>
+            <option value="Police_Clearance">Police Clearance</option>
         </select>
         <input type="text" name="doc_number" placeholder="Document Number (optional)" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
         <input type="date" name="expiry_date" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
@@ -115,13 +116,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         const input = document.getElementById(inputId);
         const preview = document.getElementById(previewId);
         if (!input || !preview) {
-            console.error('Preview elements not found');  
+            console.error('Preview elements not found');
             return;
         }
 
         input.addEventListener('change', function(e) {
             const file = e.target.files[0];
-            preview.innerHTML = '';  // Clear previous
+            preview.innerHTML = ''; // Clear previous
             if (file) {
                 if (file.type !== 'application/pdf') {
                     preview.innerHTML = '<p style="color: red;">Only PDF allowed! Please select a PDF file.</p>';
@@ -156,18 +157,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (hasError) {
             alert('Please fill all required fields (marked red)!');
         }
-        return true;  // Always return true to allow submit
+        return true; // Always return true to allow submit
     }
 
-    
+
     document.addEventListener('DOMContentLoaded', function() {
         previewFile('document', 'preview');
         const form = document.getElementById('uploadForm');
         if (form) {
             form.addEventListener('submit', function(e) {
-                console.log('Form submitted!');  
-                validateForm('uploadForm');  
-                
+                console.log('Form submitted!');
+                validateForm('uploadForm');
+
             });
         }
     });
